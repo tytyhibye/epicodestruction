@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/19</span>
+                <span class='fraction'>22/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>21/24</span>
             </div>
         
             
@@ -95,7 +95,10 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -112,17 +115,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,8 +128,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const initialCharacterState = { hp: 10, int: 3, str: 3, agi: 3 }
-const initialComputerState = { security: 3, hp: 3 }
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const initialCharacterState = { mf: 10, int: 3 }
+export const initialComputerState = { security: 10, int: 3 }
 &nbsp;
 &nbsp;
 const storeState = (initialState) =&gt; {
@@ -154,33 +160,36 @@ const changeState = (prop) =&gt; {
   return (value) =&gt; {
     return (state) =&gt; ({
       ...state,
-      [prop]: (state[prop] || 0) + value
+      [prop]: (state[prop] || <span class="branch-1 cbranch-no" title="branch not covered" >0)</span> + value
     })
   }
 }
 &nbsp;
-// Non character related state changes
+// Computer related state changes
 export const hacked = changeState('security')(-3)
 export const hackAttack = changeState('security')(Math.floor(Math.random()*(5) -5))
+export const initComp = changeState('security')(0);
 &nbsp;
-// function getRandomInt(3) { //generates 0,1,2
-//   return Math.floor(Math.random() * Math.floor(max));
-// }
 &nbsp;
 // character related state changes
 &nbsp;
-export const energyDrink = changeState('str')(1);
-export const powerGlove = changeState('agi')(1);
+export const initChar = changeState('mf')(0);
+export const energyDrink = changeState('mf')(1);
+export const powerGlove = changeState('int')(1);
 export const bionicUpgrade = changeState('int')(1);
 &nbsp;
-&nbsp;</pre></td></tr></table></pre>
+export const computerResponse = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const responseOptions = <span class="cstat-no" title="statement not covered" >[]</span>
+  const response = <span class="cstat-no" title="statement not covered" >Math.floor(Math.random()*(computerResponse.length)+1);</span>
+<span class="cstat-no" title="statement not covered" >  return playerState = char1State(responseOptions[response])</span>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jun 24 2020 11:27:33 GMT-0700 (Pacific Daylight Time)
+                at Wed Jun 24 2020 13:35:19 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="prettify.js"></script>
