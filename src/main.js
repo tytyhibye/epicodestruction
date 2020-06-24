@@ -2,7 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import $ from "jquery";
-import { feedbackLoop, firewall, ddos, computerResponse, initChar, initComp, char1State, computerState, energyDrink, powerGlove, bionicUpgrade, hacked, hackAttack } from "../src/game.js";
+import { computerResponse, powerUps, initChar, initComp, char1State, computerState, hacked, hackAttack } from "../src/game.js";
 
 const statUpdate = () => {
   const playerState = char1State(initChar);
@@ -16,7 +16,9 @@ const statUpdate = () => {
 const checkStatus = () => {
   const playerState = char1State(initChar);
   const compState = computerState(initComp);
-  if (playerState.mf <= 0) {
+  if (playerState.mf <= 0 && compState.security <=0){
+    $('#winDisplay').text("DR4W!");
+  }else if (playerState.mf <= 0) {
     $('#winDisplay').text("You LOSE!");
   }else if (compState.security <= 0) {
     $('#winDisplay').text("You WIN!");
@@ -36,11 +38,21 @@ $(document).ready(function () {
   });
 
   $('#hack').click(function(){
-    computerState(hacked);
+    const playerState = char1State(initChar);
+    console.log("players intellect", playerState.int);
+    computerState(hacked(-Math.abs(playerState.int)));
     computerResponse();
     // console.log("after hack", compState.security);
-    // console.log("response", computerResponse);
+    // console.log("response", randomSelector);
     checkStatus();
     statUpdate();
+    
+  });
+
+  $('#powerUp').click(function(){
+    powerUps();
+    checkStatus();
+    statUpdate();
+    $('#powerUp').fadeOut(1000);
   });
 });
