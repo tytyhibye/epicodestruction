@@ -11,8 +11,8 @@ const storeState = (initialState) => {
   }
 }
 
-export const stateChanger = storeState(initialCharacterState);
-const stateChanger2 = storeState(initialComputerState);
+export const char1State = storeState(initialCharacterState);
+export const computerState = storeState(initialComputerState);
 
 const changeState = (prop) => {
   return (value) => {
@@ -24,7 +24,6 @@ const changeState = (prop) => {
 }
 
 // Non character related state changes
-export const hack = changeState('security');
 export const hacked = changeState('security')(-3)
 
 // character related state changes
