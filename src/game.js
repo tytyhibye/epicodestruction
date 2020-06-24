@@ -1,5 +1,5 @@
-const initialCharacterState = { hp: 10, int: 3, str: 3, agi: 3}
-const initialComputerState = { security: 3, hp: 3}
+export const initialCharacterState = { hp: 10, int: 3 }
+export const initialComputerState = { security: 3, hp: 3 }
 
 
 const storeState = (initialState) => {
@@ -23,12 +23,16 @@ const changeState = (prop) => {
   }
 }
 
-// Non character related state changes
+// Computer related state changes
 export const hacked = changeState('security')(-3)
+export const hackAttack = changeState('security')(Math.floor(Math.random()*(5) -5))
+export const initComp = changeState('hp')(0);
+
 
 // character related state changes
 
-export const energyDrink = changeState('str')(1);
-export const powerGlove = changeState('agi')(1);
+export const initChar = changeState('str')(0);
+export const energyDrink = changeState('hp')(1);
+export const powerGlove = changeState('int')(1);
 export const bionicUpgrade = changeState('int')(1);
 
