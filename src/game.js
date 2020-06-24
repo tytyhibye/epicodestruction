@@ -2,8 +2,8 @@ const initialCharacterState = { hp: 10, int: 3, str: 3, agi: 3}
 const initialComputerState = { security: 3, hp: 3}
 
 
-const storeState = () => {
-  let currentState = {};
+const storeState = (initialState) => {
+  let currentState = initialState;
   return (stateChangeFunction) => {
     const newState = stateChangeFunction(currentState);
     currentState = {...newState};
@@ -11,8 +11,8 @@ const storeState = () => {
   }
 }
 
-export const stateChanger = storeState(); //initialCharacterState
-const stateChanger2 = storeState(); // initialComputerState
+export const stateChanger = storeState(initialCharacterState);
+const stateChanger2 = storeState(initialComputerState);
 
 const changeState = (prop) => {
   return (value) => {
@@ -24,10 +24,12 @@ const changeState = (prop) => {
 }
 
 // Non character related state changes
-const hack = changeState('security');
-const hacked = changeState('security')(-3)
+export const hack = changeState('security');
+export const hacked = changeState('security')(-3)
 
 // character related state changes
 
 export const energyDrink = changeState('str')(1);
+export const powerGlove = changeState('agi')(1);
+export const bionicUpgrade = changeState('int')(1);
 
